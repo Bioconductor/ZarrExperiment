@@ -4,7 +4,7 @@ Description: The ZarrExperiment package defines the ZarrExperiment class,
     an interface between the zarr format and functionality and Biocondcutor's
     "Experiment" class. It also defines a set of wrappers for zarr's python
     wrappers.
-Version: 0.0.0
+Version: 0.0.1
 Author: Daniel Van Twisk
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
 Depends: R (>= 3.6.0)
