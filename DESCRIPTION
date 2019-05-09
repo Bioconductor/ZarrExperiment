@@ -4,14 +4,17 @@ Description: The ZarrExperiment package defines the ZarrExperiment class,
     an interface between the zarr format and functionality and Biocondcutor's
     "Experiment" class. It also defines a set of wrappers for zarr's python
     wrappers.
-Version: 0.0.1
+Version: 0.0.2
 Author: Daniel Van Twisk
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
-Depends: R (>= 3.6.0)
+Depends: R (>= 3.6.0),
+         reticulate
+Imports: SingleCellExperiment
 License: Artistic-2.0
+URL: https://github.com/Bioconductor/ZarrExperiment
 Encoding: UTF-8
+PythonRequirements: Python (>= 2.7.0), zarr
 LazyData: true
 biocViews: ImmunoOncology, DataRepresentation, DataImport, Infrastructure,
     SingleCell
-Suggests: 
-    testthat
+Suggests: testthat
