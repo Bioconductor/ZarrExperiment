@@ -19,7 +19,7 @@ virtualenv -p python3 ~/.virtualenvs/Bioconductor
 
 3) Activate this virtual environment.
 ```
-source ~/.virtualenvs/ZarrExperiment/bin/activate
+source ~/.virtualenvs/Bioconductor/bin/activate
 ```
 
 4) Install the required python packages from the file `python-requirements.txt`
