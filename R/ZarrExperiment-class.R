@@ -1,12 +1,13 @@
 
+#' @importFrom SingleCellExperiment SingleCellExperiment
 .ZarrExperiment <- setClass('ZarrExperiment',
-    contains=c('SummarizedExperiment')
+    contains=c('SingleCellExperiment')
 )
 
-.valid.ZarrExperiment <- function(x) {
+.valid.ZarrExperiment <- function(object) {
     NULL
 }
 
-setValidity2('ZarrExperiment', .valid.ZarrExperiment)
+setValidity('ZarrExperiment', .valid.ZarrExperiment)
 
 

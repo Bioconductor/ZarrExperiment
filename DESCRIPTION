@@ -9,7 +9,7 @@ Author: Daniel Van Twisk
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
 Depends: R (>= 3.6.0),
          reticulate
-Imports: SingleCellExperiment
+Imports: SingleCellExperiment, SummarizedExperiment
 License: Artistic-2.0
 URL: https://github.com/Bioconductor/ZarrExperiment
 Encoding: UTF-8
@@ -18,3 +18,4 @@ LazyData: true
 biocViews: ImmunoOncology, DataRepresentation, DataImport, Infrastructure,
     SingleCell
 Suggests: testthat
+RoxygenNote: 6.1.1
