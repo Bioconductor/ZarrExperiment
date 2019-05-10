@@ -41,7 +41,7 @@ export RETICULATE_PYTHON=~/.virtualenvs/Bioconductor/bin/python
 
 7) Test that `zarr` can be imported with reticulate.
 ```
-R -e "reticulate::import('nimfa')"
+R -e "reticulate::import('zarr')"
 ```
 
 Thank you to Nitesh Turaga and his
