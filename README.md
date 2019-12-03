@@ -1,1 +1,1 @@
-vignettes/ZarrArchive.Rmd
+vignettes/ZarrArchive.md
