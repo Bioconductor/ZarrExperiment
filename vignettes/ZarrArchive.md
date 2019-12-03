@@ -3,7 +3,7 @@ title: "Working with Zarr archives"
 author: 
 - name: Martin Morgan
   affiliation: Roswell Park Comprehensive Cancer Center, Buffalo, NY
-date: "2019-12-02"
+date: "2019-12-03"
 output:
     BiocStyle::html_document:
         toc: true
@@ -207,13 +207,22 @@ colData
 
 Form a `SummarizedExperiment` from these components:
 
-```
+
+```r
 se <- SummarizedExperiment(
     assays = list(count = m),
     rowData = rowData,
     colData = colData
 )
 se
+## class: SummarizedExperiment 
+## dim: 16573 267 
+## metadata(0):
+## assays(1): count
+## rownames: NULL
+## rowData names(1): gene_name
+## colnames: NULL
+## colData names(3): region_id x_region y_region
 ```
 
 The `SummarizedExperiment` object can then be used in standard _R_ /
@@ -236,7 +245,7 @@ sessionInfo()
 ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
-## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+## [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
 ## [8] methods   base     
 ## 
 ## other attached packages:
@@ -251,22 +260,17 @@ sessionInfo()
 ##  [1] Rcpp_1.0.3                 compiler_4.0.0            
 ##  [3] pillar_1.4.2               XVector_0.27.0            
 ##  [5] bitops_1.0-6               tools_4.0.0               
-##  [7] zlibbioc_1.33.0            zeallot_0.1.0             
-##  [9] SingleCellExperiment_1.9.0 digest_0.6.23             
-## [11] jsonlite_1.6               evaluate_0.14             
-## [13] lattice_0.20-38            pkgconfig_2.0.3           
-## [15] rlang_0.4.2                Matrix_1.2-18             
-## [17] cli_1.1.0                  xfun_0.11                 
-## [19] GenomeInfoDbData_1.2.2     rtracklayer_1.47.0        
-## [21] stringr_1.4.0              knitr_1.26                
-## [23] vctrs_0.2.0                rappdirs_0.3.1            
-## [25] Biostrings_2.55.2          grid_4.0.0                
-## [27] reticulate_1.13.0-9005     fansi_0.4.0               
-## [29] XML_3.98-1.20              rmarkdown_1.18            
-## [31] magrittr_1.5               backports_1.1.5           
-## [33] codetools_0.2-16           GenomicAlignments_1.23.1  
-## [35] Rsamtools_2.3.2            htmltools_0.4.0           
-## [37] assertthat_0.2.1           utf8_1.1.4                
-## [39] stringi_1.4.3              RCurl_1.95-4.12           
-## [41] crayon_1.3.4
+##  [7] zlibbioc_1.33.0            SingleCellExperiment_1.9.0
+##  [9] digest_0.6.23              jsonlite_1.6              
+## [11] evaluate_0.14              lattice_0.20-38           
+## [13] pkgconfig_2.0.3            rlang_0.4.2               
+## [15] Matrix_1.2-18              xfun_0.11                 
+## [17] GenomeInfoDbData_1.2.2     rtracklayer_1.47.0        
+## [19] stringr_1.4.0              knitr_1.26                
+## [21] Biostrings_2.55.2          grid_4.0.0                
+## [23] reticulate_1.13.0-9005     XML_3.98-1.20             
+## [25] magrittr_1.5               codetools_0.2-16          
+## [27] Rsamtools_2.3.2            GenomicAlignments_1.23.1  
+## [29] stringi_1.4.3              RCurl_1.95-4.12           
+## [31] crayon_1.3.4
 ```

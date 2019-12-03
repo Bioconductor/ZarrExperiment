@@ -153,7 +153,7 @@ colData
 
 Form a `SummarizedExperiment` from these components:
 
-```
+```{r}
 se <- SummarizedExperiment(
     assays = list(count = m),
     rowData = rowData,
