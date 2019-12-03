@@ -4,7 +4,7 @@ Description: The ZarrExperiment package defines the ZarrExperiment class,
     an interface between the zarr format and functionality and Biocondcutor's
     "Experiment" class. It also defines a set of wrappers for zarr's python
     wrappers.
-Version: 0.0.6
+Version: 0.0.6-1
 Authors@R: c(
     person(
         "Daniel", "van Twisk",
@@ -21,7 +21,8 @@ Imports:
     SingleCellExperiment,
     rtracklayer,
     S4Vectors,
-    reticulate
+    reticulate,
+    basilisk (>= 0.98.7)
 Suggests:
     tibble,
     knitr,
@@ -35,4 +36,5 @@ LazyData: true
 biocViews: ImmunoOncology, DataRepresentation, DataImport, Infrastructure,
     SingleCell
 VignetteBuilder: knitr
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
+StagedInstall: no
