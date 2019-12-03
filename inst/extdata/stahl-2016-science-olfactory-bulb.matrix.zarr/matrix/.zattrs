@@ -1,0 +1,36 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "regions",
+        "features"
+    ],
+    "assay": "Spatial Transcriptomics",
+    "authors": [
+        "Patrik L. St\u00e5hl",
+        "Fredrik Salm\u00e9n",
+        "Sanja Vickovic",
+        "Anna Lundmark",
+        "Jos\u00e9 Fern\u00e1ndez Navarro",
+        "Jens Magnusson",
+        "Stefania Giacomello",
+        "Michaela Asp",
+        "Jakub O. Westholm",
+        "Mikael Huss",
+        "Annelie Mollbrink",
+        "Sten Linnarsson",
+        "Simone Codeluppi",
+        "\u00c5ke Borg",
+        "Fredrik Pont\u00e9n",
+        "Paul Igor Costea",
+        "Pelin Sahl\u00e9n",
+        "Jan Mulder",
+        "Olaf Bergmann",
+        "Joakim Lundeberg",
+        "Jonas Fris\u00e9n"
+    ],
+    "coordinates": "x_region region_id y_region gene_name",
+    "organism": "mouse",
+    "publication_name": "Visualization and analysis of gene expression in tissue sections by spatial transcriptomics",
+    "publication_url": "https://science.sciencemag.org/content/353/6294/78.long",
+    "sample_type": "Olfactory Bulb",
+    "year": 2016
+}

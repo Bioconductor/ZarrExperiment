@@ -1,0 +1,172 @@
+---
+title: "Working with Zarr archives"
+author: 
+- name: Martin Morgan
+  affiliation: Roswell Park Comprehensive Cancer Center, Buffalo, NY
+date: "`r Sys.Date()`"
+output:
+    BiocStyle::html_document:
+        toc: true
+        toc_float: true
+package: ZarrExperiment
+vignette: >
+  %\VignetteIndexEntry{Working with Zarr archives}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEndcoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    cache = TRUE
+)
+```
+
+# Introduction
+
+The ZarrExperiment package is currently under construction.  The
+purpose of the package is to build an interface between
+zarr(https://zarr.readthedocs.io/en/stable/) and the Bioconductor
+`SummarizedExperiment` family.
+
+# Installation
+
+Install the package with
+
+```
+R -e "BiocManager::install('Bioconductor/ZarrExperiment')"
+```
+
+The `ZarrExperiment` package uses the zarr module from
+python. Configuring python currently requires a git clone.
+
+```
+git clone https://github.com/Bioconductor/ZarrExperiment
+```
+
+We suggest using a python virtual environment to configure
+python. There are different ways of establishing virtual environments.
+
+## `venv`
+
+## `virtualenv`
+
+`virtualenv` is a distinct program. Do these from the command line.
+
+1) Install `python3` and `virtualenv`
+
+2) Create the virtual environment.
+
+   ```
+   virtualenv -p python3 ~/.virtualenvs/Bioconductor
+   ``` 
+
+3) Activate this virtual environment.
+
+   ```
+   source ~/.virtualenvs/Bioconductor/bin/activate
+   ```
+
+4) Install the required python packages from the file
+   `python-requirements.txt` in the package's base directory using
+   pip.
+
+   ```
+   pip install -r python-requirements.txt
+   ```
+
+   When done, deactivate the virtual environment.
+
+   ```
+   deactivate
+   ```
+
+6) Set the enviroment `RETICULATE_PYTHON` variable to use the `Bioconductor`
+   virtual environment.
+
+   ```
+   export RETICULATE_PYTHON=~/.virtualenvs/Bioconductor/bin/python
+   ```
+
+7) Test that `zarr` can be imported with reticulate.
+
+   ```
+   R -e "reticulate::import('zarr')"
+   ```
+
+## basilisk
+
+# Use
+
+Load libraries used in this vignette
+
+```{r, message=FALSE}
+library(SummarizedExperiment)
+library(tibble)
+library(ZarrExperiment)
+```
+
+Point to a sample archive. Archives are folders with a collection of files.
+
+```{r}
+fl <- system.file(
+    package="ZarrExperiment", "extdata",
+    "stahl-2016-science-olfactory-bulb.matrix.zarr"
+)
+dir(fl, recursive = TRUE, all.files = TRUE)
+```
+
+Load the archive and view, via the `show()` or `tree()` method, the
+available groups (datasets) in the archive. These groups are analogous
+to hdf5 datasets.
+
+```{r}
+arr <- ZarrArchive(fl)
+arr
+```
+
+The archive allows `$` subsetting, including tab completion. Access
+the `matrix` group member and coerce it to an _R_ (dense) matrix.
+
+```{r}
+m <- t(as(arr$matrix, "matrix"))
+m[1:5, 1:5]
+```
+
+The components of this archive (archive format is completely general,
+so it is not possible to write a 'smart' import function) can be
+accessed...
+
+```{r}
+rowData <- tibble(
+    gene_name = as(arr$gene_name, "matrix")
+)
+rowData
+
+colData <- tibble(
+    region_id = as(arr$region_id, "matrix"),
+    x_region = as(arr$x_region, "matrix"),
+    y_region = as(arr$y_region, "matrix")
+)
+colData
+```
+
+Form a `SummarizedExperiment` from these components:
+
+```
+se <- SummarizedExperiment(
+    assays = list(count = m),
+    rowData = rowData,
+    colData = colData
+)
+se
+```
+
+The `SummarizedExperiment` object can then be used in standard _R_ /
+_Bioconductor_ single-cell and other work flows.
+
+# Acknowledgements
+
+```{r}
+sessionInfo()
+```

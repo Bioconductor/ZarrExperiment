@@ -1,4 +1,3 @@
-
 #' @importFrom SingleCellExperiment SingleCellExperiment
 .ZarrExperiment <- setClass('ZarrExperiment',
     contains=c('SingleCellExperiment')
