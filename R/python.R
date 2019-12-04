@@ -6,7 +6,7 @@
     function() {
         if (is.null(.zarr)) {
             proc = basiliskStart("bczarrenv", pkgname="ZarrExperiment")
-            on.exit(basiliskStop(proc)
+            on.exit(basiliskStop(proc))
             .zarr <<- import("zarr")
             }
         .zarr
@@ -19,7 +19,7 @@
     function() {
         if (is.null(.numpy)) {
             proc = basiliskStart("bczarrenv", pkgname="ZarrExperiment")
-            on.exit(basiliskStop(proc)
+            on.exit(basiliskStop(proc))
             .numpy <<- import("numpy")
             }
         .numpy
