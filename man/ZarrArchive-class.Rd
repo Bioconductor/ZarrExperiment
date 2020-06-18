@@ -9,6 +9,7 @@
 \alias{dataset}
 \alias{dataset,ZarrArchive-method}
 \alias{$,ZarrArchive-method}
+\alias{zarr.core.Array-class}
 \alias{coerce,ZarrArchive,matrix-method}
 \alias{coerce,zarr.core.Array,matrix-method}
 \alias{show,ZarrArchive-method}

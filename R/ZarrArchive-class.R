@@ -1,3 +1,4 @@
+#' @import methods
 #' @importClassesFrom rtracklayer RTLFile
 #' @importFrom rtracklayer resource
 .ZarrArchive <-
@@ -139,6 +140,8 @@ setMethod(
     dataset(x, name)
 })
 
+#' @importFrom utils .DollarNames
+#'
 #' @export
 .DollarNames.ZarrArchive <-
     function(x, pattern)
@@ -146,6 +149,10 @@ setMethod(
     grep(pattern, datasets(x), value = TRUE)
 }
 
+#' @rdname ZarrArchive-class
+#'
+#' @name zarr.core.Array-class
+#'
 #' @exportClass zarr.core.Array
 setOldClass(c("zarr.core.Array", "python.builtin.object"))
 

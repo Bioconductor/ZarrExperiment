@@ -21,7 +21,9 @@ Imports:
     SingleCellExperiment,
     rtracklayer,
     S4Vectors,
-    reticulate
+    reticulate,
+    methods,
+    utils
 Suggests:
     tibble,
     knitr,
@@ -35,4 +37,4 @@ LazyData: true
 biocViews: ImmunoOncology, DataRepresentation, DataImport, Infrastructure,
     SingleCell
 VignetteBuilder: knitr
-RoxygenNote: 7.0.1
+RoxygenNote: 7.1.0
