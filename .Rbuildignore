@@ -1,5 +1,5 @@
 vignettes/.*.R$
 vignettes/.*.html$
-vignettes/.*_cache$
+vignettes/.*cache$
 .*tar.gz$
 .*.Rcheck$

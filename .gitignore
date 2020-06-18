@@ -1,6 +1,6 @@
 vignettes/*R
 vignettes/*html
-vignettes/*_cache
+vignettes/*cache
 .Rhistory
 *tar.gz
 *.Rcheck
