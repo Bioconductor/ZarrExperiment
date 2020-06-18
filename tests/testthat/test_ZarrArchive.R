@@ -16,7 +16,7 @@ test_that("'ZarrArchive' accessors work", {
     )
     arr <- ZarrArchive(path)
 
-    expect_identical(path(arr), path)
+    expect_identical(rtracklayer::path(arr), path)
     expect_identical(
         datasets(arr),
         c("gene_name", "matrix", "region_id", "x_region", "y_region")
@@ -35,7 +35,7 @@ test_that("'as()' works", {
     arr <- ZarrArchive(path)
 
     m <- as(dataset(arr, "matrix"), "matrix")
-    expect_s3_class(m, c("matrix", "array"))
+    expect_identical(class(m), c("matrix", "array"))
     expect_identical(dim(m), c(267L, 16573L))
     expect_identical(typeof(m), "double")
 
