@@ -1,9 +1,10 @@
 ## This installation code is from Nitesh Turaga's BiocNimfa package
 
+#' @importFrom reticulate virtualenv_create virtualenv_install
 .install_zarr <-
     function(envname)
 {
-    pkgs <- readLines("python_requirements.txt")
+    pkgs <- readLines("python-requirements.txt")
     virtualenv_create(envname)
     virtualenv_install(envname, pkgs)
 }
@@ -15,8 +16,10 @@
 #' @param envname `character(1)` virtual environment in which to
 #'     install the python zarr module.
 #'
+#' @importFrom reticulate virtualenv_list use_virtualenv
+#'
 #' @return Reference to the python module, invisibly.
-#' 
+#'
 #' @export
 install_zarr <-
     function(envname = "ZarrExperiment")
