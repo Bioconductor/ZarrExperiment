@@ -19,7 +19,7 @@ Depends: R (>= 3.6.0)
 Imports:
     SummarizedExperiment,
     SingleCellExperiment,
-    rtracklayer,
+    BiocIO,
     S4Vectors,
     reticulate,
     methods,

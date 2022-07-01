@@ -16,7 +16,7 @@ test_that("'ZarrArchive' accessors work", {
     )
     arr <- ZarrArchive(path)
 
-    expect_identical(rtracklayer::path(arr), path)
+    expect_identical(BiocIO::path(arr), path)
     expect_identical(
         datasets(arr),
         c("gene_name", "matrix", "region_id", "x_region", "y_region")

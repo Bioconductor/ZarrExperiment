@@ -1,10 +1,10 @@
 #' @import methods
-#' @importClassesFrom rtracklayer RTLFile
-#' @importFrom rtracklayer resource
+#' @importClassesFrom BiocIO BiocFile
+#' @importFrom BiocIO resource
 .ZarrArchive <-
     setClass(
         "ZarrArchive",
-        contains = "RTLFile"
+        contains = "BiocFile"
     )
 
 #' @rdname ZarrArchive-class
@@ -196,7 +196,7 @@ setAs(
 #'
 #' @description `show()` displays the resource (archive) path and tree
 #'     of datasets (groups).
-#' 
+#'
 #' @export
 setMethod(
     "show", "ZarrArchive",
