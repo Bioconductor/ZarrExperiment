@@ -15,7 +15,7 @@ Authors@R: c(
         email = "Martin.Morgan@RoswellPark.org",
         role = "aut"
     ))
-Depends: R (>= 3.6.0)
+Depends: R (>= 4.2.0)
 Imports:
     SummarizedExperiment,
     SingleCellExperiment,
