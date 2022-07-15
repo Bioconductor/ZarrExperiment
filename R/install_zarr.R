@@ -38,7 +38,7 @@ install_zarr <-
     if (!envname %in% virtualenv_list()) {
         .install_zarr(envname)
     }
-    use_virtualenv(virtualenv=envname)
+    use_virtualenv(virtualenv=envname, required = TRUE)
 
     invisible(.zarr())
 }
