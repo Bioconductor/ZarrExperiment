@@ -33,9 +33,6 @@
 ZarrArchive <-
     function(path)
 {
-    stopifnot(dir.exists(path))
-
-    path <- normalizePath(path)
     .ZarrArchive(resource = path)
 }
 

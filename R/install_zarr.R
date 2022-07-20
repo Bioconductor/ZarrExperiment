@@ -16,13 +16,15 @@
 #' @param envname `character(1)` virtual environment in which to
 #'     install the python zarr module.
 #'
+#' @param force `logical(1)` force re-installation of Zarr requirements
+#'
 #' @importFrom reticulate virtualenv_list use_virtualenv
 #'
 #' @return Reference to the python module, invisibly.
 #'
 #' @export
 install_zarr <-
-    function(envname = "ZarrExperiment")
+    function(envname = "ZarrExperiment", force = FALSE)
 {
     stopifnot(isSingleString(envname))
     is_windows <- identical(.Platform$OS.type, "windows")
@@ -35,7 +37,7 @@ install_zarr <-
         )
     }
 
-    if (!envname %in% virtualenv_list()) {
+    if (!envname %in% virtualenv_list() || force) {
         .install_zarr(envname)
     }
     use_virtualenv(virtualenv=envname, required = TRUE)

@@ -20,6 +20,7 @@ Imports:
     SummarizedExperiment,
     SingleCellExperiment,
     BiocIO,
+    BiocBaseUtils,
     S4Vectors,
     reticulate,
     methods,

@@ -4,11 +4,13 @@
 \alias{install_zarr}
 \title{Helper function to install the `zarr` python module}
 \usage{
-install_zarr(envname = "ZarrExperiment")
+install_zarr(envname = "ZarrExperiment", force = FALSE)
 }
 \arguments{
 \item{envname}{`character(1)` virtual environment in which to
 install the python zarr module.}
+
+\item{force}{`logical(1)` force re-installation of Zarr requirements}
 }
 \value{
 Reference to the python module, invisibly.

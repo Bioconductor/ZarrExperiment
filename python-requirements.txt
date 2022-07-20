@@ -1,1 +1,2 @@
 zarr
+s3fs
