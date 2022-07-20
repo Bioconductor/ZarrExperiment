@@ -209,3 +209,13 @@ setMethod(
     )
     tree(object)
 })
+
+#' @importFrom SummarizedExperiment colData
+#' @export
+setMethod("colData", "ZarrArchive", function(x, ...) {
+    S4Vectors::DataFrame(
+        region_id = as(x$region_id, "matrix"),
+        x_region = as(x$x_region, "matrix"),
+        y_region = as(x$y_region, "matrix")
+    )
+})
