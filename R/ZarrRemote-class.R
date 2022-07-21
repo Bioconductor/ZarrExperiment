@@ -32,7 +32,8 @@ setMethod(
 {
     fs <- .s3fs()$S3FileSystem(anon = TRUE, key = "dummy", secret="dummy",
         client_kwargs = reticulate::dict(endpoint_url = x@endpoint))
-    print(BiocBaseUtils::selectSome(fs$ls(x@bucket)))
+    files <- fs$ls(x@bucket)
+    cat("files:", BiocBaseUtils::selectSome(basename(files)))
     invisible(x)
 })
 
@@ -40,8 +41,10 @@ setMethod(
 #'
 #' @exportMethod import
 setMethod("import", "ZarrRemote", function(con, format, text, ...) {
-    files <- basename(tree(con))
-    if (!format %in% files)
+    fs <- .s3fs()$S3FileSystem(anon = TRUE, key = "dummy", secret="dummy",
+        client_kwargs = reticulate::dict(endpoint_url = con@endpoint))
+    files <- fs$ls(con@bucket)
+    if (!format %in% basename(files))
         stop("'format' file: ", format, " not found")
     mapper <- fs$get_mapper(paste0(con@bucket, format))
     .zarr()$load(mapper)
@@ -54,7 +57,8 @@ setMethod(
 {
     cat(
         "class: ", class(object), "\n",
-        pretty_path("resource", resource(object)),
+        pretty_path("endpoint", object@endpoint),
+        pretty_path("bucket", object@bucket),
         sep = ""
     )
     tree(object)
