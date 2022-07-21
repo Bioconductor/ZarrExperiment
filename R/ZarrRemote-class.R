@@ -9,10 +9,20 @@
 #'
 #' url <- "https://mghp.osn.xsede.org/bir190004-bucket01/index.html#TMA11/zarr/"
 #'
-#' ZarrRemote(
+#' zr <- ZarrRemote(
 #'     endpoint = "https://mghp.osn.xsede.org/",
 #'     bucket = "bir190004-bucket01/TMA11/zarr/"
 #' )
+#'
+#' \dontrun{
+#'   zarray <- import(zr, filename = "5.zarr")
+#'
+#'   dim(zarray)
+#'   ## [1] 64 3007 3007
+#'
+#'   format(object.size(zarray), units = "GB", standard = "SI")
+#'   ## [1] "2.3 GB"
+#' }
 #'
 #' @export
 ZarrRemote <-
@@ -38,15 +48,20 @@ setMethod(
 })
 
 #' @importFrom BiocIO import
+#' @importFrom BiocBaseUtils isScalarCharacter
 #'
 #' @exportMethod import
 setMethod("import", "ZarrRemote", function(con, format, text, ...) {
+    dots <- list(...)
+    file <- dots[["filename"]]
+    if (is.null(file) || !isScalarCharacter(file))
+        stop("Provide a 'filename' input found in the bucket")
     fs <- .s3fs()$S3FileSystem(anon = TRUE, key = "dummy", secret="dummy",
         client_kwargs = reticulate::dict(endpoint_url = con@endpoint))
     files <- fs$ls(con@bucket)
-    if (!format %in% basename(files))
-        stop("'format' file: ", format, " not found")
-    mapper <- fs$get_mapper(paste0(con@bucket, format))
+    if (!file %in% basename(files))
+        stop("'filename': ", file, " not found")
+    mapper <- fs$get_mapper(paste0(con@bucket, file))
     .zarr()$load(mapper)
 })
 
