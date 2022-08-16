@@ -5,14 +5,49 @@
         slots = c(endpoint = "character", bucket = "character")
     )
 
+.getBaseURL <- function(url) {
+    res <- urltools::url_parse(url)
+    res["path"] <- res["fragment"] <- NA_character_
+    urltools::url_compose(res)
+}
+
+.getBucketURL <- function(url, endpoint) {
+    gsub(endpoint, "", url)
+}
+
+#' @rdname ZarrRemote-class
+#'
+#' @title A remote representation for Zarr folders
+#'
+#' @description The `ZarrRemote` class allows one to display and import Zarr
+#'   files on the web that are accessible via the `S3Fs` python module
+#'   <https://s3fs.readthedocs.io/en/latest/>.
+#'
+#' @param endpoint character(1) The base URL of the remote Zarr folders
+#'
+#' @param bucket character(1) The bucket location portion of the full URL
+#'
+#' @param resource character(1) Optional. The full URL composed of both the
+#' `endpoint` and the `bucket` components.
+#'
+#' @details The `endpoint` component consists of both the `scheme` and the
+#'   `domain`. The complete URL is the combination of the `endpoint` and
+#'   `bucket` components. A complete URL can also be provided via the `resource`
+#'   argument.
+#'
 #' @examples
 #'
-#' url <- "https://mghp.osn.xsede.org/bir190004-bucket01/index.html#TMA11/zarr/"
 #'
 #' zr <- ZarrRemote(
 #'     endpoint = "https://mghp.osn.xsede.org/",
 #'     bucket = "bir190004-bucket01/TMA11/zarr/"
 #' )
+#'
+#' zr <- ZarrRemote(
+#'     resource = "https://mghp.osn.xsede.org/bir190004-bucket01/TMA11/zarr/"
+#' )
+#'
+#' zr
 #'
 #' \dontrun{
 #'   zarray <- import(zr, filename = "5.zarr")
@@ -26,14 +61,16 @@
 #'
 #' @export
 ZarrRemote <-
-    function(endpoint, bucket, ...)
+    function(endpoint, bucket, resource, ...)
 {
-    url <- paste0(endpoint, bucket)
-    .ZarrRemote(resource = url, endpoint = endpoint, bucket = bucket, ...)
+    if (missing(resource))
+        resource <- paste0(endpoint, bucket)
+    else {
+        endpoint <- .getBaseURL(resource)
+        bucket <- .getBucketURL(resource, endpoint)
+    }
+    .ZarrRemote(resource = resource, endpoint = endpoint, bucket = bucket, ...)
 }
-
-# store <- .s3fs()$S3Map(root='bir190004-bucket01/TMA11/zarr', s3=fs, check=FALSE)
-# root <- .zarr()$group(store = store)
 
 #' @export
 setMethod(
