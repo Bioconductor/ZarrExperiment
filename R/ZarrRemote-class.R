@@ -40,10 +40,20 @@ setMethod(
     "tree", "ZarrRemote",
     function(x)
 {
-    fs <- .s3fs()$S3FileSystem(anon = TRUE, key = "dummy", secret="dummy",
-        client_kwargs = reticulate::dict(endpoint_url = x@endpoint))
+    fs <- .s3fs()$S3FileSystem(
+        anon = TRUE, key = "dummy", secret="dummy",
+        client_kwargs = reticulate::dict(endpoint_url = x@endpoint)
+    )
     files <- fs$ls(x@bucket)
-    cat("files:", BiocBaseUtils::selectSome(basename(files)))
+    afiles <- BiocBaseUtils::selectSome(basename(files))
+    fnames <- c(
+        "",
+        paste(
+            "├──", head(afiles, -1L), "\n"
+        ),
+        paste("└──", tail(afiles, 1L), "\n")
+    )
+    cat(fnames)
     invisible(x)
 })
 
