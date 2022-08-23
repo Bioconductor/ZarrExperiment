@@ -19,8 +19,8 @@ vignette: >
 # Using OSN on TMA Data
 
 The Open Storage Network has allowed the Bioconductor project expanded
-offerings to cloud data. Here we demonstrate the usage of the `RemoteZarr`
-class to access Zarr data.
+offerings to cloud data. We demonstrate the usage of the `RemoteZarr`
+class to access Tissue MicroArray (TMA) data, one 'core' at a time.
 
 ```{r}
 library(ZarrExperiment)
@@ -29,6 +29,9 @@ library(ZarrExperiment)
 # Data Location
 
 https://mghp.osn.xsede.org/bir190004-bucket01/index.html#TMA11/zarr/
+
+There are about 123 cores within the OSN storage location above. Cores are
+numerically labeled e.g., `1.zarr` corresponds to core number one. 
 
 # Data Representation
 
