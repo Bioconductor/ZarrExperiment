@@ -83,8 +83,25 @@ This operation takes a few minutes to complete and produces approximately a 2GB
 array.
 
 ```{r,eval=FALSE}
-import(zr, filename = "99.zarr")
+c99 <- import(zr, filename = "99.zarr")
 ```
+
+## Image from channels 4, 5, 10, 17
+
+```{r,eval=FALSE}
+par(mfrow = c(2, 2))
+for (channel in c(4, 5, 10, 17))
+    image(
+        c99[channel, , ],
+        main = paste0("Channel No. ", as.character(channel)),
+        useRaster = TRUE
+    )
+```
+
+```{r,echo=FALSE}
+knitr::include_graphics("zarrremote.png")
+```
+
 
 # Session Info
 
