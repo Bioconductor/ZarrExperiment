@@ -1,0 +1,92 @@
+---
+title: "Working with Remote Zarr archives"
+author: 
+- name: Marcel Ramos
+  affiliation: Roswell Park Comprehensive Cancer Center, Buffalo, NY
+date: "`r Sys.Date()`"
+output:
+    BiocStyle::html_document:
+        toc: true
+        toc_float: true
+package: ZarrExperiment
+vignette: >
+  %\VignetteIndexEntry{Working with Remote Zarr archives}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEndcoding{UTF-8}
+---
+
+
+# Using OSN on TMA Data
+
+The Open Storage Network has allowed the Bioconductor project expanded
+offerings to cloud data. Here we demonstrate the usage of the `RemoteZarr`
+class to access Zarr data.
+
+```{r}
+library(ZarrExperiment)
+```
+
+# Data Location
+
+https://mghp.osn.xsede.org/bir190004-bucket01/index.html#TMA11/zarr/
+
+# Data Representation
+
+## ZarrRemote class
+
+```{r}
+showClass("ZarrRemote")
+```
+
+## endpoint and bucket inputs
+
+The `endpoint` corresponds to the OSN website and the `bucket` input corresponds
+to the bucket name and subfolders where the `.zarr` archives can be located.
+
+```{r}
+zr <- ZarrRemote(
+    endpoint = "https://mghp.osn.xsede.org/",
+    bucket = "bir190004-bucket01/TMA11/zarr/"
+)
+zr
+```
+
+## URL input
+
+A URL may also be used as the `resource` input. Both the `endpoint` and the
+`bucket` location will be deduced when possible.
+
+```{r}
+zr <- ZarrRemote(
+    resource = "https://mghp.osn.xsede.org/bir190004-bucket01/TMA11/zarr/"
+)
+zr
+```
+
+# Data Retrieval
+
+Currently, data retrieval is possible on a single directory via the `import`
+method on the `ZarrRemote` class.
+
+## ZarrRemote `import` method
+
+The `import` method makes internal use of the `s3fs` python module:
+
+```{r}
+getMethod(import, "ZarrRemote")
+```
+
+This operation takes a few minutes to complete and produces approximately a 2GB
+array.
+
+```{r,eval=FALSE}
+import(zr, filename = "99.zarr")
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+
