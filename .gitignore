@@ -4,3 +4,5 @@ vignettes/*cache
 .Rhistory
 *tar.gz
 *.Rcheck
+*.Rproj
+.Rproj.user
