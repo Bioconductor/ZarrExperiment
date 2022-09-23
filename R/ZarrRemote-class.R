@@ -72,16 +72,22 @@ ZarrRemote <-
     .ZarrRemote(resource = resource, endpoint = endpoint, bucket = bucket, ...)
 }
 
+#' @importFrom GenomicFiles files
+#' @exportMethod files
+setMethod("files", "ZarrRemote", function(x, ...) {
+    fs <- .s3fs()$S3FileSystem(
+        anon = TRUE, key = "dummy", secret="dummy",
+        client_kwargs = reticulate::dict(endpoint_url = x@endpoint)
+    )
+    paste0(x@endpoint, fs$ls(x@bucket))
+})
+
 #' @export
 setMethod(
     "tree", "ZarrRemote",
     function(x)
 {
-    fs <- .s3fs()$S3FileSystem(
-        anon = TRUE, key = "dummy", secret="dummy",
-        client_kwargs = reticulate::dict(endpoint_url = x@endpoint)
-    )
-    files <- fs$ls(x@bucket)
+    files <- files(x)
     afiles <- BiocBaseUtils::selectSome(basename(files))
     fnames <- c(
         "",
