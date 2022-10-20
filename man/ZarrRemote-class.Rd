@@ -14,6 +14,8 @@ the full URL.}
 
 \item{resource}{character(1) Optional. A full URL typically composed of both
 `endpoint` and `bucket` components.}
+
+\item{...}{Additional inputs to the lower level class constructor}
 }
 \description{
 The `ZarrRemote` class allows one to display and import Zarr

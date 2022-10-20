@@ -31,6 +31,8 @@
 #' @param resource character(1) Optional. A full URL typically composed of both
 #'   `endpoint` and `bucket` components.
 #'
+#' @param ... Additional inputs to the lower level class constructor
+#'
 #' @details The `endpoint` component consists of both the `scheme` and the
 #'   `domain`. The complete URL is the combination of the `endpoint` and
 #'   `bucket` components. A complete URL can also be provided via the `resource`
@@ -84,6 +86,7 @@ setMethod("files", "ZarrRemote", function(x, ...) {
     paste0(x@endpoint, fs$ls(x@bucket))
 })
 
+#' @importFrom utils head tail
 #' @export
 setMethod(
     "tree", "ZarrRemote",
@@ -94,9 +97,9 @@ setMethod(
     fnames <- c(
         "",
         paste(
-            "├──", head(afiles, -1L), "\n"
+            "\U251C\U2500\U2500", head(afiles, -1L), "\n"
         ),
-        paste("└──", tail(afiles, 1L), "\n")
+        paste("\U2514\U2500\U2500", tail(afiles, 1L), "\n")
     )
     cat(fnames)
     invisible(x)
