@@ -3,17 +3,17 @@ Title: Manipulate Zarr archives as R objects
 Description: The ZarrExperiment package defines the ZarrExperiment class,
     an interface between the zarr format and functionality and Biocondcutor's
     "Experiment" class. It also defines a set of wrappers for zarr's python
-    wrappers.
+    wrappers. It allows remote representations from an S3-like location with
+    the ZarrRemote class.
 Version: 0.0.13
 Authors@R: c(
     person(
-        "Daniel", "van Twisk",
-        email = "maintainer@biocondcutor.org",
-        role = c("aut", "cre")
+        "Daniel", "van Twisk", , "maintainer@biocondcutor.org", "aut"
     ), person(
-        "Martin", "Morgan",
-        email = "Martin.Morgan@RoswellPark.org",
-        role = "aut"
+        "Martin", "Morgan", , "Martin.Morgan@RoswellPark.org", "aut"
+    ), person(
+        "Marcel", "Ramos", , "Marcel.RamosPerez@RowswellPark.org",
+        c("aut", "cre"), c(ORCID = "0000-0002-3242-0582")
     ))
 Depends: R (>= 4.2.0)
 Imports:
@@ -36,7 +36,6 @@ License: Artistic-2.0
 URL: https://github.com/Bioconductor/ZarrExperiment
 Encoding: UTF-8
 PythonRequirements: Python (>= 2.7.0), zarr
-LazyData: true
 biocViews: ImmunoOncology, DataRepresentation, DataImport, Infrastructure,
     SingleCell
 VignetteBuilder: knitr
