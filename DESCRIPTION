@@ -5,7 +5,7 @@ Description: The ZarrExperiment package defines the ZarrExperiment class,
     "Experiment" class. It also defines a set of wrappers for zarr's python
     wrappers. It allows remote representations from an S3-like location with
     the ZarrRemote class.
-Version: 0.0.13
+Version: 0.0.14
 Authors@R: c(
     person(
         "Daniel", "van Twisk", , "maintainer@biocondcutor.org", "aut"
