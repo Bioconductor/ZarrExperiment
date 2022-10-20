@@ -2,22 +2,23 @@
 % Please edit documentation in R/ZarrRemote-class.R
 \name{ZarrRemote}
 \alias{ZarrRemote}
-\title{A remote representation for Zarr folders}
+\title{A remote S3-like representation of Zarr folders}
 \usage{
 ZarrRemote(endpoint, bucket, resource, ...)
 }
 \arguments{
 \item{endpoint}{character(1) The base URL of the remote Zarr folders}
 
-\item{bucket}{character(1) The bucket location portion of the full URL}
+\item{bucket}{character(1) The bucket name portion and any subdirectories in
+the full URL.}
 
-\item{resource}{character(1) Optional. The full URL composed of both the
-`endpoint` and the `bucket` components.}
+\item{resource}{character(1) Optional. A full URL typically composed of both
+`endpoint` and `bucket` components.}
 }
 \description{
 The `ZarrRemote` class allows one to display and import Zarr
   files on the web that are accessible via the `S3Fs` python module
-  <https://s3fs.readthedocs.io/en/latest/>.
+  <https://s3fs.readthedocs.io/en/latest/> and based on the AWS S3 service.
 }
 \details{
 The `endpoint` component consists of both the `scheme` and the
@@ -26,7 +27,6 @@ The `endpoint` component consists of both the `scheme` and the
   argument.
 }
 \examples{
-
 
 zr <- ZarrRemote(
     endpoint = "https://mghp.osn.xsede.org/",

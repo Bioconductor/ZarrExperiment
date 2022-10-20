@@ -17,18 +17,19 @@
 
 #' @rdname ZarrRemote-class
 #'
-#' @title A remote representation for Zarr folders
+#' @title A remote S3-like representation of Zarr folders
 #'
 #' @description The `ZarrRemote` class allows one to display and import Zarr
 #'   files on the web that are accessible via the `S3Fs` python module
-#'   <https://s3fs.readthedocs.io/en/latest/>.
+#'   <https://s3fs.readthedocs.io/en/latest/> and based on the AWS S3 service.
 #'
 #' @param endpoint character(1) The base URL of the remote Zarr folders
 #'
-#' @param bucket character(1) The bucket location portion of the full URL
+#' @param bucket character(1) The bucket name portion and any subdirectories in
+#'   the full URL.
 #'
-#' @param resource character(1) Optional. The full URL composed of both the
-#' `endpoint` and the `bucket` components.
+#' @param resource character(1) Optional. A full URL typically composed of both
+#'   `endpoint` and `bucket` components.
 #'
 #' @details The `endpoint` component consists of both the `scheme` and the
 #'   `domain`. The complete URL is the combination of the `endpoint` and
@@ -36,7 +37,6 @@
 #'   argument.
 #'
 #' @examples
-#'
 #'
 #' zr <- ZarrRemote(
 #'     endpoint = "https://mghp.osn.xsede.org/",
@@ -63,6 +63,8 @@
 ZarrRemote <-
     function(endpoint, bucket, resource, ...)
 {
+    if (missing(bucket) && missing(resource))
+        stop("Provide either a 'resource' or both 'endpoint' and 'bucket'")
     if (missing(resource))
         resource <- paste0(endpoint, bucket)
     else {
