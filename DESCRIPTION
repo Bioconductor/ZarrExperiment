@@ -12,7 +12,7 @@ Authors@R: c(
     ), person(
         "Martin", "Morgan", , "Martin.Morgan@RoswellPark.org", "aut"
     ), person(
-        "Marcel", "Ramos", , "Marcel.RamosPerez@RowswellPark.org",
+        "Marcel", "Ramos", , "marcel.ramos@sph.cuny.edu",
         c("aut", "cre"), c(ORCID = "0000-0002-3242-0582")
     ))
 Depends: R (>= 4.2.0)
